@@ -1,23 +1,27 @@
-import 'package:data_repository/data_repository.dart';
+import 'package:ip_api/ip_api.dart';
 
+/// {@template ip_repository}
+/// A repository that handles `ip` related requests.
+/// {@endtemplate}
 class IpRepository {
-  IpRepository({DataRepository? dataRepository}) {
-    _dataRepository = dataRepository ?? DataRepository();
-  }
+  /// {@macro ip_repository}
+  IpRepository({
+      required IpApi ipApi
+  }) : _ipApi = ipApi;
 
-  late DataRepository _dataRepository;
+  final IpApi _ipApi;
 
-  Future<List<String>> getIpList() async {
-    return List.from(await _dataRepository.getIpList());
-  }
+  /// Retrieve all ips in local storage
+  Future<List<String>> getIpList() => _ipApi.getIpList();
 
+  /// Save a ip into local storage if it not exists.
   Future<void> addIp(String ip) async {
-    List<String> ipList = await getIpList();
+    final ipList = await getIpList();
     
     if (!ipList.contains(ip)) {
       ipList.add(ip);
 
-      await _dataRepository.saveIpList(ipList);
+      await _ipApi.saveIpList(ipList);
     }
   }
 }

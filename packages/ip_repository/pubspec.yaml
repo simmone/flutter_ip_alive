@@ -7,8 +7,8 @@ environment:
   sdk: ^3.11.0
 
 dependencies:
-  data_repository:
-    path: ../data_repository
+  ip_api:
+    path: ../ip_api
 
 dev_dependencies:
   mocktail: ^1.0.4

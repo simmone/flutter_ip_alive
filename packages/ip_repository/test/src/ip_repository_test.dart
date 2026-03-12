@@ -1,10 +1,8 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:mocktail/mocktail.dart';
-import 'package:data_repository/data_repository.dart' as data_repository;
+import 'package:ip_api/ip_api.dart';
 import 'package:ip_repository/ip_repository.dart';
+import 'package:mocktail/mocktail.dart';
 
-class MockDataRepository extends Mock
-    implements data_repository.DataRepository {}
+class MockIpApi extends Mock implements IpApi {}
 
 void main() {
   group('IpRepository', () {
